@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyễn Thị Thảo Hiền — Portfolio</title>
+  
+  <!-- Phông chữ Plus Jakarta Sans & Be Vietnam Pro chuẩn tiếng Việt Unicode -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------
+       HỆ THỐNG MÀU TỐI GIẢN & ĐỘ TRONG SUỐT XUYÊN THẤU VIDEO NỀN
+       ------------------------------------------------------------- */
+    :root {
+      --color-bg-base: #050507;
+      
+      /* Bề mặt kính mờ trong suốt giúp nhìn thấy video khói đỏ chuyển động phía sau */
+      --color-glass-surface: rgba(14, 14, 18, 0.35);
+      --color-glass-card: rgba(18, 18, 24, 0.45);
+      --color-glass-hover: rgba(26, 26, 34, 0.6);
+      
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-hover: rgba(255, 42, 66, 0.5);
+      
+      --color-crimson: #FF2A42;
+      --color-crimson-soft: #FF5A6E;
+      --color-crimson-glow: rgba(255, 42, 66, 0.35);
+      
+      --color-text-main: #FFFFFF;
+      --color-text-body: #F0F0F5;
+      --color-text-muted: #A5A5B0;
+      
+      --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: 0.25s var(--ease-smooth);
+      --transition-slow: 0.5s var(--ease-smooth);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--color-bg-base);
+      color: var(--color-text-body);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+      position: relative;
+      background: transparent;
+    }
+
+    /* -------------------------------------------------------------
+       KHÓA TÍNH NĂNG TẢI ẢNH / LƯU ẢNH TRÊN WEB
+       ------------------------------------------------------------- */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+      user-drag: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .text-justify {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    /* -------------------------------------------------------------
+       KHUNG PHÁT VIDEO NỀN LOOPING
+       ------------------------------------------------------------- */
+    .bg-video-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background-color: var(--color-bg-base);
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      display: block;
+    }
+
+    /* -------------------------------------------------------------
+       THANH ĐIỀU HƯỚNG CỐ ĐỊNH & HIGHLIGHT (SCROLLSPY)
+       ------------------------------------------------------------- */
+    .site-header {
+      position: fixed;
+      top: 1.25rem;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 0 1rem;
+    }
+
+    .nav-dock {
+      background: rgba(14, 14, 18, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 999px;
+      padding: 0.55rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
+      transition: var(--transition-fast);
+      max-width: 100%;
+    }
+
+    .brand-logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--color-text-main);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .brand-logo span {
+      color: var(--color-crimson);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      list-style: none;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      transition: all var(--transition-fast);
+      position: relative;
+      padding: 0.3rem 0;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-text-main);
+    }
+
+    .nav-links a.active {
+      color: var(--color-crimson) !important;
+      font-weight: 700;
+      text-shadow: 0 0 12px var(--color-crimson-glow);
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--color-crimson);
+      border-radius: 2px;
+      box-shadow: 0 0 8px var(--color-crimson);
+    }
+
+    .nav-cta-btn {
+      background: var(--color-crimson);
+      color: #FFFFFF;
+      padding: 0.45rem 1.15rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      transition: var(--transition-fast);
+      box-shadow: 0 4px 16px var(--color-crimson-glow);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-cta-btn:hover {
+      background: #FF475D;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(255, 42, 66, 0.4);
+    }
+
+    /* -------------------------------------------------------------
+       NÚT QUAY LẠI ĐẦU TRANG (BACK TO TOP)
+       ------------------------------------------------------------- */
+    .back-to-top-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(18, 18, 22, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: all var(--transition-fast);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+    }
+
+    .back-to-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top-btn:hover {
+      background: var(--color-crimson);
+      color: #FFFFFF;
+      border-color: var(--color-crimson);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px var(--color-crimson-glow);
+    }
+
+    .back-to-top-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.2;
+    }
+
+    /* -------------------------------------------------------------
+       01. KHÔNG GIAN MỞ MÀN (HERO)
+       ------------------------------------------------------------- */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7.5rem 0 4rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-title-tag {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-title-tag::before {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--color-crimson);
+    }
+
+    .hero-name {
+      font-family: var(--font-heading);
+      font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+      line-height: 1.2;
+      font-weight: 800;
+      color: var(--color-text-main);
+      margin-bottom: 1.4rem;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-quote {
+      font-size: 1.02rem;
+      line-height: 1.85;
+      color: var(--color-text-body);
+      max-width: 600px;
+      margin-bottom: 2.25rem;
+      border-left: 2px solid var(--color-crimson);
+      padding: 0.85rem 1.25rem;
+      background: rgba(14, 14, 18, 0.42);
+      backdrop-filter: blur(8px);
+      border-radius: 0 8px 8px 0;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--color-crimson);
+      color: #FFFFFF;
+      padding: 0.85rem 1.85rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 24px var(--color-crimson-glow);
+    }
+
+    .btn-primary:hover {
+      background: #FF475D;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 42, 66, 0.45);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-main);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(10px);
+      padding: 0.85rem 1.85rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+    }
+
+    .hero-image-frame {
+      width: 100%;
+      height: 520px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+      position: relative;
+      background: rgba(10, 10, 14, 0.4);
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-position: center 25%;
+      transition: transform var(--transition-slow);
+    }
+
+    .hero-image-frame:hover img {
+      transform: scale(1.03);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -1.25rem;
+      left: -1.25rem;
+      background: rgba(18, 18, 24, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-badge-number {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--color-crimson);
+      line-height: 1;
+    }
+
+    .hero-badge-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* -------------------------------------------------------------
+       02. TỔNG QUAN NĂNG LỰC & KỸ NĂNG CỐT LÕI
+       ------------------------------------------------------------- */
+    .section-padding {
+      padding: 6.5rem 0;
+      position: relative;
+    }
+
+    .section-glass-wrap {
+      background: var(--color-glass-surface);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-top: 1px solid var(--color-border-subtle);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .profile-statement-grid {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4.5rem;
+    }
+
+    .profile-photo-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+      aspect-ratio: 3 / 4;
+      background: rgba(10, 10, 14, 0.4);
+    }
+
+    .profile-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-position: center 20%;
+    }
+
+    .statement-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .statement-text {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      line-height: 1.85;
+      color: var(--color-text-main);
+      font-weight: 400;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    }
+
+    .skills-wrapper {
+      background: var(--color-glass-card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 14px;
+      padding: 3rem;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .skills-main-heading {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-text-main);
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .skills-main-heading::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--color-crimson);
+      margin: 0.75rem auto 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .skill-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .skill-cat-title {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .skill-item {
+      font-size: 0.92rem;
+      color: var(--color-text-body);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      line-height: 1.5;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .skill-item::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-crimson);
+      flex-shrink: 0;
+    }
+
+    .tool-tags-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .tool-tag {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      transition: var(--transition-fast);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    .tool-tag:hover {
+      background: var(--color-crimson);
+      color: #FFFFFF;
+      border-color: var(--color-crimson);
+      box-shadow: 0 4px 14px var(--color-crimson-glow);
+    }
+
+    /* -------------------------------------------------------------
+       03. TỔNG QUAN KINH NGHIỆM LÀM VIỆC
+       ------------------------------------------------------------- */
+    .cv-timeline-wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .cv-job-block {
+      background: var(--color-glass-card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 12px;
+      padding: 2.25rem;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+      position: relative;
+      border-left: 4px solid var(--color-crimson);
+      transition: var(--transition-fast);
+    }
+
+    .cv-job-block:hover {
+      background: var(--color-glass-hover);
+      border-color: var(--color-border-hover);
+    }
+
+    .cv-job-header {
+      margin-bottom: 1.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .cv-job-role {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-text-main);
+      margin-bottom: 0.35rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    }
+
+    .cv-job-company {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      line-height: 1.5;
+    }
+
+    .cv-job-company span {
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    .cv-duty-list {
+      list-style: disc;
+      padding-left: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--color-text-body);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+    }
+
+    .cv-duty-list li strong {
+      color: var(--color-text-main);
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3.5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .edu-card {
+      background: var(--color-glass-card);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 10px;
+      padding: 1.75rem;
+    }
+
+    .edu-title {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--color-crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .edu-name {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin-bottom: 0.25rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .edu-desc {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .social-activity-block {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--color-border-subtle);
+    }
+
+    .social-activity-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+    }
+
+    .social-item {
+      margin-bottom: 0.85rem;
+    }
+
+    .social-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .social-header {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .social-body {
+      font-size: 0.85rem;
+      color: var(--color-text-body);
+      line-height: 1.55;
+      margin-top: 0.2rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .cert-item-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      margin-top: 0.65rem;
+      background: rgba(18, 18, 24, 0.6);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .cert-item-link:hover {
+      border-color: var(--color-crimson);
+      transform: translateX(4px);
+      background: rgba(26, 26, 34, 0.75);
+    }
+
+    .cert-link-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .cert-link-action {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      background: rgba(255, 42, 66, 0.15);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* -------------------------------------------------------------
+       04. CÁC DỰ ÁN TIÊU BIỂU (3 TRỤ CỘT TƯƠNG TÁC)
+       ------------------------------------------------------------- */
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.85rem, 3vw, 2.35rem);
+      font-weight: 800;
+      color: var(--color-text-main);
+      line-height: 1.25;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .pillar-nav-switcher {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .pillar-tab-btn {
+      background: rgba(18, 18, 24, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 12px;
+      padding: 1.4rem 1.25rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pillar-tab-btn:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .pillar-tab-btn.active {
+      background: rgba(26, 26, 34, 0.75);
+      border-color: var(--color-crimson);
+      box-shadow: 0 14px 36px var(--color-crimson-glow);
+    }
+
+    .pillar-tab-btn.active .pillar-tab-title {
+      color: var(--color-crimson);
+    }
+
+    .pillar-tab-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      color: var(--color-text-main);
+    }
+
+    .pillar-tab-subtitle {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+    }
+
+    .pillar-content-panel {
+      display: none;
+      animation: fadeInPillar 0.4s var(--ease-smooth);
+    }
+
+    .pillar-content-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeInPillar {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sub-domain-card {
+      background: rgba(16, 16, 22, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 14px;
+      padding: 3rem;
+      margin-bottom: 3.5rem;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    .sub-domain-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .sub-domain-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .sub-domain-title {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--color-text-main);
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .sub-domain-projects-list {
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.65;
+    }
+
+    .sub-domain-projects-label {
+      color: var(--color-crimson);
+      font-weight: 700;
+    }
+
+    .sub-domain-projects-text {
+      color: var(--color-text-main);
+      font-weight: 400;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+    }
+
+    .experience-takeaway-box {
+      background: rgba(255, 42, 66, 0.08);
+      border: 1px solid rgba(255, 42, 66, 0.25);
+      border-left: 4px solid var(--color-crimson);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .takeaway-heading {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.35rem;
+    }
+
+    .takeaway-text {
+      font-size: 0.92rem;
+      color: var(--color-text-main);
+      line-height: 1.7;
+      font-style: italic;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* LƯỚI MASONRY TỐI GIẢN */
+    .masonry-gallery {
+      column-count: 3;
+      column-gap: 1.25rem;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.25rem;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--color-border-subtle);
+      background: rgba(12, 12, 16, 0.5);
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: transform var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .masonry-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .masonry-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform var(--transition-slow);
+    }
+
+    .masonry-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .masonry-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+      color: #FFFFFF;
+      font-size: 0.78rem;
+      padding: 1.6rem 0.85rem 0.65rem;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .masonry-item:hover .masonry-caption {
+      opacity: 1;
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .metric-item {
+      background: rgba(18, 18, 24, 0.45);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .metric-value {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--color-crimson);
+      line-height: 1.1;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .role-scope-box {
+      background: rgba(18, 18, 24, 0.4);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .role-scope-title {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    .role-scope-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.75rem 1.5rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .role-scope-item {
+      font-size: 0.92rem;
+      color: var(--color-text-body);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      line-height: 1.55;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+    }
+
+    .role-scope-item::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-crimson);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+
+    /* -------------------------------------------------------------
+       05. KẾT NỐI HỢP TÁC & PHONG THƯ ĐỎ NHỎ GỌN TƯƠNG TÁC
+       ------------------------------------------------------------- */
+    .closing-section {
+      background: rgba(10, 10, 14, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--color-text-main);
+      padding: 6.5rem 0 4rem;
+      position: relative;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .closing-content {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .closing-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .closing-reflection-text {
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: var(--color-text-body);
+      margin-bottom: 2.25rem;
+      padding: 0 1rem;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+    }
+
+    /* -------------------------------------------------------------
+       PHONG THƯ ĐỎ NHỎ GỌN (COMPACT PULSING ENVELOPE PILL)
+       ------------------------------------------------------------- */
+    .gratitude-widget-area {
+      margin: 2rem auto 3.2rem;
+      max-width: 720px;
+      position: relative;
+    }
+
+    /* Nút phong thư nhỏ gọn đang đóng kèm hiệu ứng phập phồng ẩn hiện */
+    .envelope-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.15rem;
+      padding: 0.75rem 1.85rem;
+      border-radius: 999px;
+      background: rgba(18, 18, 24, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255, 42, 66, 0.4);
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+      transition: all var(--transition-fast);
+      user-select: none;
+      animation: breatheGlow 2.8s ease-in-out infinite;
+    }
+
+    /* Hiệu ứng phập phồng ẩn hiện kích thích nhấp chuột */
+    @keyframes breatheGlow {
+      0%, 100% {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(255, 42, 66, 0.3);
+        border-color: rgba(255, 42, 66, 0.35);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.6), 0 0 20px 4px rgba(255, 42, 66, 0.5);
+        border-color: var(--color-crimson);
+        transform: scale(1.02);
+      }
+    }
+
+    .envelope-pill-btn:hover {
+      background: rgba(28, 28, 38, 0.9);
+      border-color: var(--color-crimson);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 14px 40px var(--color-crimson-glow);
+    }
+
+    /* Icon phong thư đỏ nhỏ có dấu sáp */
+    .mini-red-envelope {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #FF475D 0%, #C9182B 75%, #8A0F1E 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(255, 42, 66, 0.6);
+      flex-shrink: 0;
+      animation: heartbeatPulse 2.8s ease-in-out infinite;
+    }
+
+    @keyframes heartbeatPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    .mini-red-envelope svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .envelope-pill-text {
+      font-family: var(--font-heading);
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      letter-spacing: 0.02em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Bức thư tri ân khi mở ra */
+    .unfolded-letter-card {
+      display: none;
+      background: rgba(16, 16, 22, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 42, 66, 0.3);
+      border-radius: 12px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+      position: relative;
+      animation: letterFadeIn 0.45s var(--ease-smooth);
+    }
+
+    @keyframes letterFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .unfolded-letter-card.active {
+      display: block;
+    }
+
+    .letter-decor-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .letter-decor-line {
+      height: 1px;
+      width: 45px;
+      background: rgba(255, 42, 66, 0.35);
+    }
+
+    .letter-decor-title {
+      font-family: var(--font-heading);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--color-crimson);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .gratitude-body-text {
+      font-size: 0.94rem;
+      line-height: 1.9;
+      color: var(--color-crimson-soft);
+      font-style: italic;
+      margin: 0;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+    }
+
+    .contact-details-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-pill {
+      background: rgba(18, 18, 24, 0.65);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-border-subtle);
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-main);
+      transition: var(--transition-fast);
+    }
+
+    .contact-pill:hover {
+      border-color: var(--color-crimson);
+      color: var(--color-crimson);
+      background: rgba(26, 26, 34, 0.8);
+    }
+
+    .closing-actions {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .btn-contact-me {
+      background: var(--color-crimson);
+      color: #FFFFFF;
+      padding: 0.95rem 2.5rem;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      transition: var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 10px 25px var(--color-crimson-glow);
+    }
+
+    .btn-contact-me:hover {
+      background: #FF475D;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(255, 42, 66, 0.45);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--color-border-subtle);
+      padding-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+
+    /* -------------------------------------------------------------
+       HỘP THOẠI XEM BẰNG CHỨNG CHỈ & ẢNH PHÓNG TO (LIGHTBOX)
+       ------------------------------------------------------------- */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-fast);
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cert-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.92);
+      width: 90%;
+      max-width: 840px;
+      max-height: 88vh;
+      background: rgba(18, 18, 24, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 14px;
+      z-index: 1002;
+      overflow-y: auto;
+      padding: 2.5rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      border: 1px solid var(--color-border-subtle);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-fast);
+    }
+
+    .cert-modal.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--color-text-main);
+      transition: var(--transition-fast);
+      z-index: 10;
+    }
+
+    .drawer-close-btn:hover {
+      background: var(--color-crimson);
+      color: #FFFFFF;
+      border-color: var(--color-crimson);
+    }
+
+    .cert-frame-wrap {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--color-border-subtle);
+      background: #09090B;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-frame-wrap img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .cert-frame-wrap iframe {
+      width: 100%;
+      height: 520px;
+      border: none;
+    }
+
+    /* -------------------------------------------------------------
+       RESPONSIVE OPTIMIZATION CHO MOBILE
+       ------------------------------------------------------------- */
+    @media (max-width: 1024px) {
+      .hero-name {
+        white-space: normal;
+        font-size: clamp(1.85rem, 3.8vw, 2.4rem);
+      }
+      .masonry-gallery {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .hero-grid,
+      .profile-statement-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-image-frame {
+        height: 420px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .skills-wrapper,
+      .sub-domain-card {
+        padding: 2rem;
+      }
+
+      .pillar-nav-switcher {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.15rem;
+      }
+
+      .site-header {
+        top: 0.75rem;
+        padding: 0 0.5rem;
+      }
+
+      .nav-dock {
+        padding: 0.45rem 1rem;
+        gap: 0.9rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .nav-dock::-webkit-scrollbar {
+        display: none;
+      }
+
+      .brand-logo {
+        font-size: 0.92rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+
+      .nav-cta-btn {
+        padding: 0.35rem 0.9rem;
+        font-size: 0.75rem;
+      }
+
+      .masonry-gallery {
+        column-count: 2 !important;
+        column-gap: 0.75rem !important;
+      }
+
+      .masonry-item {
+        margin-bottom: 0.75rem !important;
+        border-radius: 8px !important;
+      }
+
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+
+      .role-scope-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .envelope-pill-btn {
+        padding: 0.65rem 1.35rem;
+        gap: 0.85rem;
+      }
+
+      .envelope-pill-text {
+        font-size: 0.85rem;
+      }
+
+      .unfolded-letter-card {
+        padding: 1.75rem 1.25rem;
+      }
+
+      .cert-modal {
+        padding: 1.5rem 1rem;
+        max-height: 92vh;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .back-to-top-btn {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- KHUNG VIDEO NỀN LOOPING TỰ NHIÊN -->
+  <div class="bg-video-wrap">
+    <video class="bg-video" autoplay muted loop playsinline preload="auto">
+      <source src="background.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- NÚT QUAY LẠI ĐẦU TRANG (BACK TO TOP) -->
+  <button class="back-to-top-btn" id="backToTopBtn" onclick="scrollToTop()" aria-label="Quay lại đầu trang">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M18 15L12 9L6 15" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- THANH ĐIỀU HƯỚNG CỐ ĐỊNH CÓ TÍNH NĂNG HIGHLIGHT SCROLLSPY -->
+  <header class="site-header">
+    <nav class="nav-dock">
+      <a href="#mo-man" class="brand-logo">THẢO HIỀN<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#nang-luc">Tóm tắt năng lực</a></li>
+        <li><a href="#kinh-nghiem">Kinh nghiệm</a></li>
+        <li><a href="#du-an">Các dự án tiêu biểu</a></li>
+      </ul>
+      <a href="#lien-he" class="nav-cta-btn">Kết nối</a>
+    </nav>
+  </header>
+
+  <!-- 01. KHÔNG GIAN MỞ MÀN (HERO) -->
+  <section class="hero-section" id="mo-man">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-title-tag">Hồ sơ năng lực chuyên môn</div>
+          <h1 class="hero-name">NGUYỄN THỊ THẢO HIỀN</h1>
+          <p class="hero-quote text-justify">
+            "Mình là Hiền — một cô gái GenZ đang hoạt động trong các lĩnh vực Content marketing, Event, Media Production, mình nhận ra rằng đây chính là những mắc xích hoàn hảo giúp mình hiểu và làm truyền thông một cách đa chiều. Chính sự kết hợp này sẽ giúp một thương hiệu thật sự chạm đến trái tim của khán giả. Với mình, công việc không bao giờ chỉ là hoàn thành nhiệm vụ mà đó là hành trình “turning every deadline into a spotlight”."
+          </p>
+          <div class="hero-actions">
+            <a href="#du-an" class="btn-primary">Khám phá các dự án</a>
+            <a href="#nang-luc" class="btn-secondary">Về năng lực</a>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <div class="hero-image-frame">
+            <img src="Photo_2026-06-21-8-2-18-599.jpg" alt="Chân dung Nguyễn Thị Thảo Hiền">
+          </div>
+          <div class="hero-badge">
+            <div class="hero-badge-number">03+</div>
+            <div class="hero-badge-text">Năm kinh nghiệm thực chiến</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02. TỔNG QUAN NĂNG LỰC & KỸ NĂNG CỐT LÕI -->
+  <section class="section-padding section-glass-wrap" id="nang-luc">
+    <div class="container">
+      <div class="profile-statement-grid">
+        <div class="profile-photo-card">
+          <img src="Photo_2025-09-4-10-55-6-510.jpg" alt="Thảo Hiền tại WeChoice Awards">
+        </div>
+        <div>
+          <div class="statement-tag">Tóm tắt năng lực</div>
+          <div class="statement-text text-justify">
+            "Xuất phát điểm từ sáng tạo nội dung số, sau đó mở rộng sang tổ chức sự kiện và điều phối sản xuất media trong gần 2 năm trở lại đây. Những trải nghiệm đa diện này giúp tôi có góc nhìn toàn diện về một chiến dịch truyền thông: hiểu cách chuyển hóa định vị thương hiệu thành thông điệp chạm tới người xem, đồng thời làm chủ quy trình vận hành thực tế để hiện thực hóa ý tưởng và tối ưu nguồn lực. Với mục tiêu trở thành một Brand Manager trong 2 năm tới, tôi chủ động tìm kiếm cơ hội cọ xát sâu rộng ở nhiều khía cạnh vận hành và phát triển thương hiệu – nơi tôi có thể vận dụng sự nhạy bén cùng năng lực thực thi đa nhiệm để góp phần xây dựng những trải nghiệm giàu cảm xúc và giá trị bền vững cho khách hàng."
+          </div>
+        </div>
+      </div>
+
+      <!-- KHU VỰC CÁC KỸ NĂNG CỐT LÕI -->
+      <div class="skills-wrapper">
+        <h3 class="skills-main-heading">CÁC KỸ NĂNG CỐT LÕI</h3>
+        <div class="skills-grid">
+          
+          <!-- KỸ NĂNG CHUYÊN MÔN -->
+          <div class="skill-col">
+            <h4 class="skill-cat-title">Kỹ năng chuyên môn</h4>
+            <ul class="skill-list">
+              <li class="skill-item">Nghiên cứu thị hiếu khán giả</li>
+              <li class="skill-item">Lên ý tưởng, phát triển concept</li>
+              <li class="skill-item">Viết kịch bản chương trình, MC</li>
+              <li class="skill-item">Sáng tạo và thẩm mỹ</li>
+              <li class="skill-item">Giao tiếp, đàm phán</li>
+              <li class="skill-item">Điều phối dự án</li>
+              <li class="skill-item">Ứng dụng AI tối ưu hiệu suất</li>
+            </ul>
+          </div>
+
+          <!-- KỸ NĂNG MỀM -->
+          <div class="skill-col">
+            <h4 class="skill-cat-title">Kỹ năng mềm</h4>
+            <ul class="skill-list">
+              <li class="skill-item">Quản lý thời gian</li>
+              <li class="skill-item">Làm việc nhóm</li>
+              <li class="skill-item">Giải quyết tình huống</li>
+              <li class="skill-item">Quản trị rủi ro & Khả năng thích nghi</li>
+              <li class="skill-item">Tư duy phản biện</li>
+            </ul>
+          </div>
+
+          <!-- CÔNG CỤ & CÔNG NGHỆ -->
+          <div class="skill-col">
+            <h4 class="skill-cat-title">Công cụ & Công nghệ</h4>
+            <div class="tool-tags-grid">
+              <span class="tool-tag">CapCut</span>
+              <span class="tool-tag">Adobe Premiere</span>
+              <span class="tool-tag">Canva</span>
+              <span class="tool-tag">Gemini</span>
+              <span class="tool-tag">ChatGPT</span>
+              <span class="tool-tag">Claude</span>
+              <span class="tool-tag">Procreate</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03. TỔNG QUAN KINH NGHIỆM LÀM VIỆC -->
+  <section class="section-padding" id="kinh-nghiem">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">TỔNG QUAN KINH NGHIỆM LÀM VIỆC</h2>
+      </div>
+
+      <div class="cv-timeline-wrap">
+        
+        <!-- MỐC 1: A2Z & NEW THINK (2024 - 2026) -->
+        <article class="cv-job-block">
+          <div class="cv-job-header">
+            <h3 class="cv-job-role">Chuyên viên tổ chức sự kiện</h3>
+            <div class="cv-job-company">
+              CÔNG TY TNHH DỊCH VỤ QUẢNG CÁO A2Z<br>
+              CÔNG TY TNHH TM DỊCH VỤ QUẢNG CÁO NEW THINK AGENCY <span>| 2024 - 2026</span>
+            </div>
+          </div>
+          <ul class="cv-duty-list text-justify">
+            <li>Brainstorm cùng team, lên ý tưởng, lập kế hoạch, làm việc với các nhà cung cấp, xây dựng timeline chi tiết, master checklist và run-sheet vận hành sự kiện.</li>
+            <li>Vận hành từ khâu chuẩn bị đến điều phối hiện trường, xử lý các tình huống phát sinh tại chỗ, đảm bảo chương trình diễn ra trơn tru.</li>
+            <li><strong>Dự án tiêu biểu:</strong> VPBank Cosplay Festival 2026, Lễ khánh thành Saigon Marina IFC, Lễ hội bánh dân gian tại Cần Thơ, Waterpoint Experience Day.</li>
+            <li>Đảm bảo tiến độ nghiệm thu, hoàn thiện báo cáo sau sự kiện.</li>
+          </ul>
+        </article>
+
+        <!-- MỐC 2: DPRO (2024 - 2025) -->
+        <article class="cv-job-block">
+          <div class="cv-job-header">
+            <h3 class="cv-job-role">Account Manager</h3>
+            <div class="cv-job-company">
+              CÔNG TY TNHH TRUYỀN THÔNG DPRO <span>| 2024 - 2025</span>
+            </div>
+          </div>
+          <ul class="cv-duty-list text-justify">
+            <li><strong>Sản xuất TVC & Shooting:</strong> Tiếp nhận brief, lên kế hoạch và sắp xếp ekip phù hợp với từng dự án, làm việc với các nhà cung cấp. Lên call sheet và phối hợp cùng các bộ phận liên quan để điều phối hiện trường buổi quay/chụp.</li>
+            <li><strong>Vận hành livestream & trải nghiệm thương hiệu:</strong> Phụ trách điều phối sản xuất, sắp xếp kỹ thuật viên và lên call sheet và giám sát buổi phát sóng.</li>
+            <li>Kiểm soát chất lượng hình ảnh/video hậu kỳ, bàn giao đúng thời gian và định hướng thương hiệu.</li>
+            <li><strong>Dự án tiêu biểu:</strong> Sản xuất TVC cho thương hiệu Prudential, Phở SOL và điều phối vận hành các dự án livestream, quay chụp sự kiện cho các thương hiệu Catrice Cosmetics, Elle Decoration, Shopee Food, Volvo,...</li>
+          </ul>
+        </article>
+
+        <!-- MỐC 3: 6K & ĐẠI K (2022 - 2025) -->
+        <article class="cv-job-block">
+          <div class="cv-job-header">
+            <h3 class="cv-job-role">Nhân viên marketing</h3>
+            <div class="cv-job-company">
+              HỌC VIỆN ĐÀO TO 6K INTERNATIONAL <span>| 2022 - 2025</span><br>
+              CÔNG TY CỔ PHẦN QUẢNG CÁO ĐẠI K <span>| 2022 - 2023</span>
+            </div>
+          </div>
+          <ul class="cv-duty-list text-justify">
+            <li><strong>Học viện 6K International:</strong> Lên kế hoạch nội dung AWO và thực thi từ viết bài cho đến thiết kế hình ảnh cho học viện.</li>
+            <li>Điều phối và vận hành chương trình Summer Camp cùng các sự kiện offline của học viện.</li>
+            <li><strong>Công ty Cổ phần Quảng cáo Đại K:</strong> Triển khai các chiến dịch truyền thông trên các nền tảng mạng xã hội cho các thương hiệu thuộc tập đoàn dược phẩm Sanofi, trực tiếp lên ý tưởng, thực thi các nội dung bài đăng mạng xã hội.</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <!-- KHỐI HỌC VẤN, NGOẠI NGỮ & HOẠT ĐỘNG XÃ HỘI -->
+      <div class="education-grid">
+        <div class="edu-card">
+          <div class="edu-title">Học vấn & Ngoại ngữ</div>
+          <div class="edu-name">Kỹ sư Y sinh</div>
+          <div class="edu-desc">Đại học Sư phạm Kỹ thuật TPHCM | 2018 - 2022</div>
+          <div style="margin-top: 0.85rem; padding-top: 0.75rem; border-top: 1px dashed var(--color-border-subtle);">
+            <span style="font-weight: 700; color: var(--color-crimson); font-size: 0.9rem;">Ngoại ngữ: TOEIC 700</span>
+          </div>
+
+          <div class="social-activity-block">
+            <div class="social-activity-title">Hoạt động xã hội tiêu biểu</div>
+            
+            <div class="social-item">
+              <div class="social-header">Operation Smile Vietnam | 2021 | Tình nguyện viên</div>
+              <div class="social-body">
+                <strong>Trưởng Ban tổ chức Dự án "Nắng Garage Sale":</strong> Vận hành dự án trên nền tảng Facebook, quyên góp toàn bộ lợi nhuận vào quỹ phẫu thuật cho trẻ em dị tật bẩm sinh.
+              </div>
+            </div>
+
+            <div class="social-item">
+              <div class="social-header">XONE Radio | 2022 | Thí sinh</div>
+              <div class="social-body">
+                <strong>Top 22 Radio Star 2022:</strong> Cuộc thi tìm kiếm phát thanh viên / người dẫn chương trình phát thanh do XONE Radio (thuộc Zing MP3) tổ chức.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-title">Chứng chỉ chuyên môn</div>
+          
+          <div class="cert-item-link" onclick="openCertModal('abnlp')">
+            <div>
+              <div class="cert-link-title">Certified NLP Practitioner</div>
+              <div style="font-size: 0.78rem; color: var(--color-text-muted);">American Board of NLP (ABNLP)</div>
+            </div>
+            <span class="cert-link-action">Xem chứng chỉ →</span>
+          </div>
+
+          <div class="cert-item-link" onclick="openCertModal('aim')">
+            <div>
+              <div class="cert-link-title">Digital Platform Management</div>
+              <div style="font-size: 0.78rem; color: var(--color-text-muted);">AIM Academy</div>
+            </div>
+            <span class="cert-link-action">Xem chứng chỉ →</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 04. CÁC DỰ ÁN TIÊU BIỂU (3 TRỤ CỘT TƯƠNG TÁC) -->
+  <section class="section-padding section-glass-wrap" id="du-an">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">CÁC DỰ ÁN TIÊU BIỂU</h2>
+      </div>
+
+      <!-- 3 NÚT CHUYỂN ĐỔI TRỤ CỘT CHÍNH -->
+      <div class="pillar-nav-switcher">
+        <div class="pillar-tab-btn active" onclick="switchPillar('su-kien')">
+          <span class="pillar-tab-title">SỰ KIỆN</span>
+          <span class="pillar-tab-subtitle">Truyền thông & Trải nghiệm thực tế</span>
+        </div>
+        <div class="pillar-tab-btn" onclick="switchPillar('production')">
+          <span class="pillar-tab-title">PRODUCTION</span>
+          <span class="pillar-tab-subtitle">TVC, Commercial Shooting & Livestream</span>
+        </div>
+        <div class="pillar-tab-btn" onclick="switchPillar('content-marketing')">
+          <span class="pillar-tab-title">CONTENT MARKETING</span>
+          <span class="pillar-tab-subtitle">Digital Campaign & Always-on</span>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TRỤ CỘT 1: SỰ KIỆN
+           ========================================== -->
+      <div class="pillar-content-panel active" id="panel-su-kien">
+        
+        <!-- SỰ KIỆN TRUYỀN THÔNG -->
+        <div class="sub-domain-card">
+          <div class="sub-domain-header">
+            <h3 class="sub-domain-title">SỰ KIỆN TRUYỀN THÔNG</h3>
+            <div class="sub-domain-projects-list">
+              <span class="sub-domain-projects-label">Các dự án tiêu biểu:</span>
+              <span class="sub-domain-projects-text"> VPBank Cosplay Festival 2026, Lễ khánh thành Saigon Marina IFC, các buổi dạ tiệc tại Kiều by KITA, các sự kiện mở bán, khai trương thuộc KITA Group, Lễ hội bánh dân gian Cần Thơ</span>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 1rem;">
+              <strong>Vai trò:</strong> Lên ý tưởng, lập kế hoạch, xây dựng timeline chi tiết, master checklist, run-sheet và trực tiếp điều phối vận hành hiện trường.
+            </div>
+          </div>
+
+          <div class="experience-takeaway-box">
+            <div class="takeaway-heading">Mình đã học được gì?</div>
+            <p class="takeaway-text text-justify">
+              "Phối hợp nhịp nhàng giữa các bên, cân bằng cảm xúc trong các tình huống áp lực cao độ, nâng cao được năng lực giải quyết vấn đề dưới áp lực thời gian, điều phối và quản lý sự kiện với lưu lượng khách lớn."
+            </p>
+          </div>
+
+          <!-- LƯỚI MASONRY SỰ KIỆN TRUYỀN THÔNG -->
+          <div class="masonry-gallery">
+            
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Cổng hoa vòm tròn và ban nhạc dạ tiệc Kiều by KITA')">
+              <img src="kieu 1.jpg" alt="Dạ tiệc Kiều by KITA" loading="lazy">
+              <div class="masonry-caption">Cổng hoa vòm tròn nghệ thuật - Kiều by KITA</div>
+            </div>
+
+            <!-- ẢNH THẢM ĐỎ TIẾP ĐÓN IFC -->
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Thảm đỏ tiếp đón đại biểu Lễ khánh thành Saigon Marina IFC')">
+              <img src="khanh thanh Saigon IFC.jpg" 
+                   onerror="const fallbacks=['khanh thanh Saigon IFC_2.jpg', 'tham-do-ifc.jpg', 'khanh%20thanh%20Saigon%20IFC.jpg', 'khanh thanh Saigon IFC.jpeg', 'khanh thanh Saigon IFC.png']; const idx=parseInt(this.dataset.tried||0); if(idx < fallbacks.length){this.dataset.tried=idx+1; this.src=fallbacks[idx];}"
+                   alt="Thảm đỏ Lễ khánh thành Saigon Marina IFC" loading="lazy">
+              <div class="masonry-caption">Thảm đỏ tiếp đón đại biểu Lễ khánh thành Saigon Marina IFC</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Cổng chào tre trúc sinh thái Solaria Rise - Nam Long Land')">
+              <img src="Photo_2026-03-5-12-16-37-915.jpg" alt="Cổng chào Solaria Rise" loading="lazy">
+              <div class="masonry-caption">Cổng chào sinh thái Solaria Rise - Nam Long Land</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Toàn cảnh sàn diễn T & hàng ngàn khán giả đa tầng - VPBank Cosplay Festival 2026')">
+              <img src="665619212_1509624224538170_6302070826036755244_n.jpg" alt="VPBank Cosplay Festival 2026" loading="lazy">
+              <div class="masonry-caption">Sàn diễn catwalk chữ T - VPBank Cosplay Festival 2026</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Tiếp đón và hướng dẫn khách hàng check-in bốc thăm tại sự kiện mở bán')">
+              <img src="Photo_2026-03-5-12-16-38-46.jpg" alt="Bàn check-in Nam Long" loading="lazy">
+              <div class="masonry-caption">Bàn check-in & tiếp đón khách mời Solaria Rise</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Đại cảnh Webtretho Family Fair 2024 nhìn từ trên cao')">
+              <img src="tretho.jpg" alt="Webtretho Family Fair 2024" loading="lazy">
+              <div class="masonry-caption">Đại cảnh Webtretho Family Fair 2024</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Sự kiện The Big Leap - CleverTap phối hợp cùng Amazon Web Services (AWS)')">
+              <img src="clever.jpg" alt="Sự kiện The Big Leap CleverTap AWS" loading="lazy">
+              <div class="masonry-caption">Sự kiện "The Big Leap" - CleverTap x AWS</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Bàn tiệc sang trọng & không gian nghệ thuật - Kiều by KITA')">
+              <img src="473544455_122151027338363486_3769157680995030373_n.jpg" alt="Bàn tiệc Kiều by KITA" loading="lazy">
+              <div class="masonry-caption">Bàn tiệc sang trọng - Kiều by KITA</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Khai tiệc & nâng ly chúc mừng - Kiều by KITA')">
+              <img src="kieu.jpg" alt="Khai tiệc Kiều by KITA" loading="lazy">
+              <div class="masonry-caption">Khai tiệc & nâng ly chúc mừng - Kiều by KITA</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Sân khấu chính & khán giả - VPBank Cosplay Festival 2026')">
+              <img src="VPBank-Cosplay-Festival-2026-e1775719911198.jpg" alt="Sân khấu VPBank Cosplay Festival" loading="lazy">
+              <div class="masonry-caption">Không khí sân khấu LED chính</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Không gian triển lãm di sản Ba Son - Lễ khánh thành Saigon Marina IFC')">
+              <img src="536238730_9969057349865327_1046659193058911169_n.jpg" alt="Saigon Marina IFC Triển lãm" loading="lazy">
+              <div class="masonry-caption">Triển lãm di sản Ba Son - Saigon Marina IFC</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Toàn cảnh quảng trường bên sông Sài Gòn & Cầu Ba Son - Saigon Marina IFC')">
+              <img src="535300979_122259126374277291_4473585225668701492_n.jpg" alt="Saigon Marina IFC Toàn cảnh" loading="lazy">
+              <div class="masonry-caption">Đại cảnh quảng trường lễ bên sông Sài Gòn</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Photobooth check-in tại lễ khánh thành Saigon Marina IFC')">
+              <img src="534994500_122259126524277291_2869162810928829261_n.jpg" alt="Saigon Marina IFC Photobooth" loading="lazy">
+              <div class="masonry-caption">Photobooth check-in tại lễ khánh thành Saigon Marina IFC</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Dàn nhạc thính phòng biểu diễn đón khách VIP - Saigon Marina IFC')">
+              <img src="Photo_2026-03-5-12-48-1-114.jpg" alt="Dàn nhạc thính phòng Saigon Marina IFC" loading="lazy">
+              <div class="masonry-caption">Dàn nhạc thính phòng & Đội ngũ đón tiếp</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Sân khấu tiết mục mở màn sự kiện mở bán Kiều By KITA')">
+              <img src="DEE08690.jpg" alt="Dạ tiệc Kiều by KITA" loading="lazy">
+              <div class="masonry-caption">Sân khấu tiết mục mở màn sự kiện mở bán Kiều By KITA</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Cận cảnh hoa phát sáng cơ học trên sân khấu Kiều by KITA')">
+              <img src="DE_00375.jpg" alt="Hoa cơ học Kiều by KITA" loading="lazy">
+              <div class="masonry-caption">Hệ thống hoa cơ học phát sáng</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Photobooth vòm đỏ & PG tiếp đón sang trọng - Kiều by KITA')">
+              <img src="DE_00372.jpg" alt="Photobooth Kiều by KITA" loading="lazy">
+              <div class="masonry-caption">Photobooth vòm đỏ & PG đón tiếp</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'KITA Airport City - Tiết mục múa lửa nghệ thuật đêm')">
+              <img src="DEE03907.jpg" alt="KITA Múa lửa" loading="lazy">
+              <div class="masonry-caption">Hiệu ứng múa lửa đêm - KITA Airport City</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Màn múa lân LED hiện đại - KITA Airport City')">
+              <img src="DEE03957-Enhanced-NR.jpg" alt="KITA Múa lân LED" loading="lazy">
+              <div class="masonry-caption">Hoạt náo múa lân LED hiện đại</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Khu đô thị sân bay KITA Airport City về đêm')">
+              <img src="DE_07729.jpg" alt="KITA Booth" loading="lazy">
+              <div class="masonry-caption">Booth trải nghiệm mô hình máy bay</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- WORKSHOP VÀ TRẠI HÈ TRẢI NGHIỆM -->
+        <div class="sub-domain-card">
+          <div class="sub-domain-header">
+            <h3 class="sub-domain-title">WORKSHOP VÀ TRẠI HÈ TRẢI NGHIỆM</h3>
+            <div class="sub-domain-projects-list">
+              <span class="sub-domain-projects-label">Các dự án tiêu biểu:</span>
+              <span class="sub-domain-projects-text"> Workshop trải nghiệm tại các dự án thuộc Charm Group và Nam Long Land, Trại hè Summer Camp - The Next Leader của Học viện 6K International</span>
+            </div>
+            <div style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 1rem;">
+              <strong>Vai trò:</strong> Lên kế hoạch, xây dựng kịch bản vận hành thực địa, chuẩn bị giáo cụ và quản trị an toàn trải nghiệm khách hàng / trại sinh.
+            </div>
+          </div>
+
+          <div class="experience-takeaway-box">
+            <div class="takeaway-heading">Mình đã học được gì?</div>
+            <p class="takeaway-text text-justify">
+              "Sự kiên nhẫn, tỉ mỉ và thấu hiểu tâm lý trải nghiệm của khách hàng, cách giao tiếp với mọi lứa tuổi cùng với sự sáng tạo trong nghệ thuật làm đồ thủ công."
+            </p>
+          </div>
+
+          <!-- LƯỚI MASONRY WORKSHOP & TRẠI HÈ -->
+          <div class="masonry-gallery">
+            
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Đồng hành cùng phụ huynh và các bé trải nghiệm workshop')">
+              <img src="Workshop sen đá tại dự án The Infinity.jpg" alt="Trải nghiệm workshop The Infinity" loading="lazy">
+              <div class="masonry-caption">Đồng hành cùng phụ huynh và các bé trải nghiệm workshop</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Đồng hành & hướng dẫn trải nghiệm thủ công cùng gia đình tại workshop')">
+              <img src="ws.jpg" alt="Workshop thủ công gia đình" loading="lazy">
+              <div class="masonry-caption">Hướng dẫn làm đồ thủ công & gắn kết gia đình</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Rà soát kịch bản và run-sheet tại lều dã ngoại hiện trường')">
+              <img src="Photo_2026-03-5-13-1-1-68.jpg" alt="Run-sheet Summer Camp" loading="lazy">
+              <div class="masonry-caption">Rà soát kịch bản & run-sheet tại lều dã ngoại</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Chuẩn bị giáo cụ và tài liệu bài học The Next Leader')">
+              <img src="Photo_2026-03-5-12-56-29-963.jpg" alt="Giáo cụ Next Leader" loading="lazy">
+              <div class="masonry-caption">Chuẩn bị tài liệu & giáo cụ The Next Leader</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Điều phối đoàn trại sinh lội suối an toàn')">
+              <img src="Photo_2023-07-31-9-52-59-907.jpg" alt="Trại sinh lội suối" loading="lazy">
+              <div class="masonry-caption">Hoạt động trải nghiệm vượt suối thiên nhiên</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Tập thể trại sinh Summer Camp')">
+              <img src="Photo_2026-03-5-12-56-29-705.jpg" alt="Tập thể Summer Camp" loading="lazy">
+              <div class="masonry-caption">Khoảnh khắc gắn kết tập thể Summer Camp</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Lắng nghe và chia sẻ cùng trại sinh nhỏ tuổi')">
+              <img src="Photo_2023-07-31-9-53-7-407.jpg" alt="Lắng nghe trại sinh" loading="lazy">
+              <div class="masonry-caption">Đồng hành và thấu hiểu tâm lý trẻ</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Hoạt động thể thao chèo thuyền SUP trên hồ')">
+              <img src="Photo_2026-03-5-12-16-39-93.jpg" alt="Chèo thuyền SUP" loading="lazy">
+              <div class="masonry-caption">Hoạt động chèo SUP trải nghiệm</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Workshop làm tiểu cảnh terrarium sen đá - The Infinity Dĩ An Charm Group')">
+              <img src="Photo_2026-03-5-12-16-39-249.jpg" alt="Workshop sen đá Charm Group" loading="lazy">
+              <div class="masonry-caption">Workshop terrarium sen đá - The Infinity Dĩ An</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Workshop vẽ tranh nghệ thuật tĩnh tâm cho gia đình')">
+              <img src="Photo_2026-03-5-12-41-12-542.jpg" alt="Workshop vẽ tranh" loading="lazy">
+              <div class="masonry-caption">Workshop vẽ tranh nghệ thuật & sáng tạo thủ công</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==========================================
+           TRỤ CỘT 2: PRODUCTION
+           ========================================== -->
+      <div class="pillar-content-panel" id="panel-production">
+        <div class="sub-domain-card">
+          <div class="sub-domain-header">
+            <h3 class="sub-domain-title">PRODUCTION & LIVESTREAM COORDINATION</h3>
+            
+            <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.85rem;">
+              <div class="sub-domain-projects-list" style="margin-bottom: 0;">
+                <span class="sub-domain-projects-label">🎬 Sản xuất TVC, hình ảnh, phim doanh nghiệp & fashion shooting:</span>
+                <span class="sub-domain-projects-text"> Phở SOL, Prudential, Bệnh viện Đa khoa Vạn Hạnh, các bộ hình thời trang concept,...</span>
+              </div>
+              <div class="sub-domain-projects-list">
+                <span class="sub-domain-projects-label">📡 Điều phối team media, kỹ thuật viên tại sự kiện livestream & truyền thông:</span>
+                <span class="sub-domain-projects-text"> Catrice Cosmetics, Elle Decoration, Shopee Food, Volvo,...</span>
+              </div>
+            </div>
+
+            <div class="text-justify" style="font-size: 0.9rem; color: var(--color-text-muted); margin-top: 1.25rem;">
+              <strong>Vai trò:</strong> tiếp nhận brief, lên kế hoạch và call sheet, điều phối hiện trường trường quay, sắp xếp nhân sự phù hợp với từng dự án và kiểm soát chặt chẽ chất lượng video/hình ảnh hậu kỳ đúng định hướng thương hiệu.
+            </div>
+          </div>
+
+          <!-- LƯỚI MASONRY PRODUCTION -->
+          <div class="masonry-gallery">
+            
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Follow team kỹ thuật & hệ thống monitor tại buổi livestream ShopeeFood')">
+              <img src="livestream shoppe food.jpg" alt="Livestream ShopeeFood" loading="lazy">
+              <div class="masonry-caption">Follow team kỹ thuật & hệ thống monitor tại buổi livestream ShopeeFood</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Điều phối hiện trường buổi shooting TVC ngoại cảnh sân vườn')">
+              <img src="lmn.jpg" alt="Shooting TVC ngoại cảnh" loading="lazy">
+              <div class="masonry-caption">Điều phối hiện trường buổi shooting TVC ngoại cảnh</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Set-up ánh sáng và điều phối ekip bối cảnh villa gia đình')">
+              <img src="lmn2.jpg" alt="Shooting bối cảnh villa" loading="lazy">
+              <div class="masonry-caption">Set-up bối cảnh villa gia đình & điều phối diễn viên</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Sự kiện Phố Đẹp Em Slay của Catrice Cosmetic')">
+              <img src="catrice.jpg" alt="Sự kiện Phố Đẹp Em Slay của Catrice Cosmetic" loading="lazy">
+              <div class="masonry-caption">Sự kiện Phố Đẹp Em Slay của Catrice Cosmetic</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Rà soát call-sheet, moodboard và trao đổi kịch bản tại set shooting thời trang')">
+              <img src="1790324756392_1480893684495990195_5902529041945763031_6c9b4da9ea67b1fe5807adf8e320869d.jpg" alt="Rà soát call sheet shooting" loading="lazy">
+              <div class="masonry-caption">Rà soát call-sheet & moodboard tại hiện trường shooting</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Ekip buổi chụp ảnh thời trang cùng Khoai Lang Thang')">
+              <img src="1790325230767_1480893684495990195_5902529041945763031_baf6d0630df8aa4a93c2adcb7e09036c.jpg" alt="Ekip fashion shoot Khoai Lang Thang" loading="lazy">
+              <div class="masonry-caption">Ekip buổi chụp ảnh thời trang cùng Khoai Lang Thang</div>
+            </div>
+            
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Set-up ánh sáng Godox & bối cảnh cửa an ninh sân bay')">
+              <img src="1790324811484_1480893684495990195_5902529041945763031_0a29dcfcfb2171fda1dd80b48b9ed264.jpg" 
+                   onerror="if(!this.src.includes('_2.jpg')) this.src='1790324811484_1480893684495990195_5902529041945763031_0a29dcfcfb2171fda1dd80b48b9ed264_2.jpg';" 
+                   alt="Setup ánh sáng studio" loading="lazy">
+              <div class="masonry-caption">Setup hệ thống ánh sáng studio chuyên nghiệp</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Một góc setup buổi shooting')">
+              <img src="1790324754198_1480893684495990195_5902529041945763031_0d3b83ee9851cb2e911dfc270a072a37.jpg" 
+                   onerror="if(!this.src.includes('_2.jpg')) this.src='1790324754198_1480893684495990195_5902529041945763031_0d3b83ee9851cb2e911dfc270a072a37_2.jpg';" 
+                   alt="Một góc setup buổi shooting" loading="lazy">
+              <div class="masonry-caption">Một góc setup buổi shooting</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Phim trường TVC phông xanh & góc monitor quay nghệ sĩ')">
+              <img src="Photo_2026-03-5-12-16-40-613.jpg" alt="Phim trường TVC" loading="lazy">
+              <div class="masonry-caption">Phim trường TVC phông xanh & monitor</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Điều phối hiện trường trường quay bên dàn đèn Nanlite')">
+              <img src="Photo_2025-09-4-10-55-6-654.jpg" alt="Điều phối trường quay" loading="lazy">
+              <div class="masonry-caption">Túc trực điều phối hiện trường buổi quay</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Đối chiếu kịch bản phân cảnh bên monitor đạo diễn')">
+              <img src="Photo_2026-03-5-12-16-40-464.jpg" alt="Bàn kịch bản monitor" loading="lazy">
+              <div class="masonry-caption">Đối chiếu kịch bản bên monitor đạo diễn</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Ghi hình bác sĩ Bệnh viện Đa khoa Vạn Hạnh')">
+              <img src="Photo_2026-03-5-14-28-6-265.jpg" alt="BV Vạn Hạnh" loading="lazy">
+              <div class="masonry-caption">Phim doanh nghiệp - Bệnh viện Đa khoa Vạn Hạnh</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Set livestream Chợ Hoa Tươi Xinh - ShopeeFood Tết')">
+              <img src="Photo_2026-03-5-12-16-40-419.jpg" alt="Set ShopeeFood Tết" loading="lazy">
+              <div class="masonry-caption">Set livestream Chợ Hoa Tết - ShopeeFood</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Ghi hình phỏng vấn chuyên gia với phông xanh')">
+              <img src="Photo_2026-03-5-12-16-40-306.jpg" alt="Ghi hình chuyên gia" loading="lazy">
+              <div class="masonry-caption">Điều phối buổi ghi hình phỏng vấn</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Buổi shooting KV cho thương hiệu Prudential')">
+              <img src="Photo_2026-03-5-12-16-40-509.jpg" alt="Shooting Prudential" loading="lazy">
+              <div class="masonry-caption">Buổi shooting KV cho thương hiệu Prudential</div>
+            </div>
+
+            <div class="masonry-item" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Ekip sản xuất đóng máy buổi quay TVC')">
+              <img src="Photo_2026-03-5-14-28-6-311.jpg" alt="Ekip sản xuất TVC" loading="lazy">
+              <div class="masonry-caption">Ekip sản xuất TVC & Commercial Shooting</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TRỤ CỘT 3: CONTENT MARKETING
+           ========================================== -->
+      <div class="pillar-content-panel" id="panel-content-marketing">
+        <div class="sub-domain-card">
+          <div class="sub-domain-header">
+            <h3 class="sub-domain-title">CONTENT MARKETING</h3>
+            
+            <div class="sub-domain-projects-list">
+              <span class="sub-domain-projects-label">Các dự án tiêu biểu:</span>
+              <span class="sub-domain-projects-text"> Chiến dịch "Tôi Phụ Nữ" của nhãn hàng Lactacyd, "Hắt xì hơi, Lì xì rơi" thuộc nhãn hàng Telfast, MV Tết Enterogermina x Bùi Công Nam, Mini-game trên nền tảng Facebook kết hợp cùng Châu Bùi, Truyền thông nội bộ Pharmaton và Phosphalugel</span>
+            </div>
+
+            <div class="role-scope-box">
+              <div class="role-scope-title">Vai trò đảm nhiệm:</div>
+              <ul class="role-scope-grid">
+                <li class="role-scope-item">Lên kế hoạch nội dung theo từng giai đoạn và mục tiêu truyền thông của thương hiệu.</li>
+                <li class="role-scope-item">Viết bài đăng cho các trang mạng xã hội.</li>
+                <li class="role-scope-item">Lên ý tưởng và viết kịch bản video ngắn đăng TikTok, Reels, YouTube Shorts.</li>
+                <li class="role-scope-item">Viết bài PR trên các trang báo.</li>
+                <li class="role-scope-item">Thiết kế hình ảnh minh họa & chỉnh sửa video cơ bản.</li>
+              </ul>
+            </div>
+
+            <p class="text-justify" style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.75; margin-bottom: 0.5rem;">
+              Hơn 1 năm trực tiếp phụ trách nội dung Always-on (AWO) và các chiến dịch cho các nhãn hàng thuộc Tập đoàn Dược phẩm Sanofi. Triển khai các chiến dịch truyền thông trên Facebook & TikTok giúp thương hiệu đạt được những chỉ số ấn tượng:
+            </p>
+          </div>
+
+          <div class="metrics-row">
+            <div class="metric-item">
+              <div class="metric-value">49M+</div>
+              <div class="metric-label">Lượt xem TikTok</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">17M+</div>
+              <div class="metric-label">Lượt xem YouTube</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">25M+</div>
+              <div class="metric-label">Lượt chơi Mini-game</div>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value">11M+</div>
+              <div class="metric-label">Tiếp cận Facebook</div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 700; color: var(--color-crimson); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 0.04em;">
+              Tư liệu bài đăng
+            </div>
+            <div class="masonry-item" style="cursor: pointer;" onclick="openLightbox(this.querySelector('img').currentSrc || this.querySelector('img').src, 'Tư liệu bài đăng - Tổng hợp chiến dịch Content Marketing Sanofi, Lactacyd, Telfast, 6K...')">
+              <img src="content marketing.jpg" alt="Tư liệu bài đăng Content Marketing" style="width: 100%; height: auto;" loading="lazy">
+              <div class="masonry-caption">Tư liệu bài đăng Always-on & Mini-game Sanofi, Pharmaton, Lactacyd...</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 05. KẾT NỐI HỢP TÁC & PHONG THƯ ĐỎ NHỎ GỌN TƯƠNG TÁC -->
+  <footer class="closing-section" id="lien-he">
+    <div class="container">
+      <div class="closing-content">
+        <div class="closing-tag">Sau tất cả thì...</div>
+        
+        <p class="closing-reflection-text text-justify">
+          Thoạt nhìn hành trình qua ba vai trò content marketing, sản xuất truyền thông và tổ chức sự kiện có vẻ thiếu nhất quán, nhưng tôi lại thầm biết ơn tất thảy giai đoạn mình trải qua đã dạy tôi hiểu về truyền thông một cách đa chiều: content dạy tôi cách kể chuyện và chạm đến cảm xúc người đọc, sản xuất dạy tôi cách hiện thực hóa ý tưởng thành sản phẩm hình ảnh, và sự kiện dạy tôi cách biến một concept thành trải nghiệm sống động mà người tham dự có thể cảm nhận trực tiếp. Có lẽ đó là nền tảng để một ngày không xa - cùng với bạn, tôi có thể tạo ra những sản phẩm thật sự trọn vẹn từ ý tưởng, hình ảnh, đến cảm xúc.
+        </p>
+
+        <!-- WIDGET PHONG THƯ ĐỎ NHỎ GỌN CÓ HIỆU ỨNG PHẬP PHỒNG -->
+        <div class="gratitude-widget-area">
+          
+          <!-- THANH PHONG THƯ ĐỎ NHỎ GỌN (CHẠM ĐỂ MỞ) -->
+          <div class="envelope-pill-btn" id="gratitudeTrigger" onclick="openGratitudeLetter()" role="button" aria-label="Mở phong thư tri ân">
+            <div class="mini-red-envelope">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <span class="envelope-pill-text">Gửi đến những người đồng hành cùng tôi</span>
+          </div>
+
+          <!-- LÁ THƯ KHI MỞ RA (TỰ ĐỘNG ĐÓNG KHI LƯỚT LÊN TRÊN) -->
+          <div class="unfolded-letter-card text-justify" id="gratitudeLetter">
+            <div class="letter-decor-bar">
+              <div class="letter-decor-line"></div>
+              <span class="letter-decor-title">LỜI TRI ÂN & BIẾT ƠN</span>
+              <div class="letter-decor-line"></div>
+            </div>
+
+            <p class="gratitude-body-text">
+              "Những dự án trong hồ sơ này không chỉ là công việc, mà là hành trình trưởng thành của chính mình. Em xin gửi lời biết ơn sâu sắc đến các anh chị leader, những người đồng đội và quý khách hàng đã luôn tin tưởng, trao cho em cơ hội được thử sức và học hỏi. Đứng trước những dự án quy mô lớn, nếu không có sự bao dung, dẫn dắt và đồng hành của mọi người, em sẽ không thể trở thành một mảnh ghép nhỏ góp phần hoàn thiện bức tranh tầm cỡ ấy và không thể có một Thảo Hiền đa nhiệm của ngày hôm nay. Xin chân thành cảm ơn!"
+            </p>
+          </div>
+
+        </div>
+
+        <div class="contact-details-bar">
+          <a href="mailto:thaohien21599@gmail.com" class="contact-pill">
+            <span>✉</span> thaohien21599@gmail.com
+          </a>
+          <a href="tel:0373731762" class="contact-pill">
+            <span>✆</span> 0373 731 762
+          </a>
+          <div class="contact-pill">
+            <span>📍</span> Phước Long, TP.HCM
+          </div>
+        </div>
+
+        <div class="closing-actions">
+          <a href="https://www.facebook.com/thaohien.nguyen.5454" target="_blank" rel="noopener noreferrer" class="btn-contact-me">
+            Contact me →
+          </a>
+        </div>
+
+        <div class="footer-bottom">
+          <div>NGUYỄN THỊ THẢO HIỀN • PORTFOLIO</div>
+          <div>Bảo lưu toàn bộ bản quyền tư liệu • 2026</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LỚP PHỦ NỀN CHO LIGHTBOX / MODAL -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeAllModals()"></div>
+
+  <!-- HỘP THOẠI XEM BẰNG CHỨNG CHỈ & PHÓNG TO HÌNH ẢNH -->
+  <div class="cert-modal" id="certModal">
+    <button class="drawer-close-btn" onclick="closeAllModals()">×</button>
+    <div id="certModalContent"></div>
+  </div>
+
+  <!-- JAVASCRIPT ĐIỀU HƯỚNG TƯƠNG TÁC, BACK TO TOP & BẢO VỆ ẢNH -->
+  <script>
+    // Kích hoạt phát video nền tự động
+    window.addEventListener('DOMContentLoaded', () => {
+      const video = document.querySelector('.bg-video');
+      if (video) {
+        video.muted = true;
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Cần tương tác để phát video:", error);
+          });
+        }
+      }
+    });
+
+    // MỞ BỨC THƯ TRI ÂN
+    function openGratitudeLetter() {
+      const trigger = document.getElementById('gratitudeTrigger');
+      const letter = document.getElementById('gratitudeLetter');
+      if (trigger && letter) {
+        trigger.style.display = 'none';
+        letter.classList.add('active');
+      }
+    }
+
+    // TỰ ĐỘNG ĐÓNG PHONG THƯ KHI NGƯỜI DÙNG CUỘN NGƯỢC LÊN TRÊN
+    let lastScrollY = window.pageYOffset;
+    let upwardScrollCount = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.pageYOffset;
+      const letter = document.getElementById('gratitudeLetter');
+      const trigger = document.getElementById('gratitudeTrigger');
+
+      if (letter && letter.classList.contains('active')) {
+        // Kiểm tra xem người dùng có đang cuộn ngược lên không
+        if (currentScrollY < lastScrollY) {
+          upwardScrollCount += (lastScrollY - currentScrollY);
+          const rect = letter.getBoundingClientRect();
+          
+          // Khi lướt lên trên 60px hoặc vị trí bức thư tụt xuống quá 75% màn hình
+          if (upwardScrollCount > 60 || rect.top > window.innerHeight * 0.75) {
+            letter.classList.remove('active');
+            trigger.style.display = 'inline-flex';
+            upwardScrollCount = 0;
+          }
+        } else {
+          upwardScrollCount = 0;
+        }
+      } else {
+        upwardScrollCount = 0;
+      }
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+
+    // KHÓA TÍNH NĂNG TẢI ẢNH (CHẶN MENU CHUỘT PHẢI & KÉO THẢ ẢNH)
+    document.addEventListener('contextmenu', (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+      }
+    });
+    document.addEventListener('dragstart', (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+      }
+    });
+
+    // SCROLLSPY HIGHLIGHT THANH ĐIỀU HƯỚNG & HIỂN THỊ NÚT BACK TO TOP
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      const scrollPosition = window.pageYOffset + 220;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+        }
+      });
+
+      if (window.pageYOffset > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    // Hàm cuộn êm lên đầu trang
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Chuyển đổi giữa 3 Trụ cột dự án
+    function switchPillar(pillarId) {
+      document.querySelectorAll('.pillar-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.pillar-content-panel').forEach(panel => panel.classList.remove('active'));
+
+      if (pillarId === 'su-kien') {
+        document.querySelectorAll('.pillar-tab-btn')[0].classList.add('active');
+        document.getElementById('panel-su-kien').classList.add('active');
+      } else if (pillarId === 'production') {
+        document.querySelectorAll('.pillar-tab-btn')[1].classList.add('active');
+        document.getElementById('panel-production').classList.add('active');
+      } else if (pillarId === 'content-marketing') {
+        document.querySelectorAll('.pillar-tab-btn')[2].classList.add('active');
+        document.getElementById('panel-content-marketing').classList.add('active');
+      }
+    }
+
+    // Mở Lightbox phóng to ảnh kèm mô tả
+    function openLightbox(imgSrc, captionText) {
+      const content = `
+        <div style="margin-bottom: 1.25rem; padding-right: 2.5rem;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--color-crimson);">${captionText || 'Hình ảnh tư liệu thực tế'}</h3>
+        </div>
+        <div class="cert-frame-wrap" style="background: transparent;">
+          <img src="${imgSrc}" alt="${captionText}" style="max-height: 72vh; width: auto; object-fit: contain;" draggable="false">
+        </div>
+      `;
+      document.getElementById('certModalContent').innerHTML = content;
+      document.getElementById('drawerOverlay').classList.add('active');
+      document.getElementById('certModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Modal phóng to chứng chỉ
+    const certificates = {
+      abnlp: {
+        title: "Certified NLP Practitioner",
+        issuer: "American Board of NLP (ABNLP) & NLP POWER Vietnam • Cấp ngày: 08/04/2023",
+        type: "image",
+        file: "yu.jpg"
+      },
+      aim: {
+        title: "Digital Platform Management",
+        issuer: "AIM Academy - The Treasure House of Talents • Khóa đào tạo: 20/09/2024 - 07/10/2024",
+        type: "pdf",
+        file: "Nguyễn Thị Thảo Hiền.pdf"
+      }
+    };
+
+    function openCertModal(certId) {
+      const cert = certificates[certId];
+      if (!cert) return;
+
+      let previewHtml = "";
+      if (cert.type === "image") {
+        previewHtml = `<div class="cert-frame-wrap"><img src="${cert.file}" alt="${cert.title}" draggable="false"></div>`;
+      } else if (cert.type === "pdf") {
+        previewHtml = `
+          <div class="cert-frame-wrap">
+            <iframe src="${cert.file}#toolbar=0" title="${cert.title}"></iframe>
+          </div>
+          <div style="margin-top: 1rem; text-align: right;">
+            <a href="${cert.file}" target="_blank" style="font-size: 0.85rem; font-weight: 600; color: var(--color-crimson); text-decoration: underline;">
+              Mở file PDF trong tab mới →
+            </a>
+          </div>
+        `;
+      }
+
+      const content = `
+        <div style="margin-bottom: 1.25rem; padding-right: 2.5rem;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: var(--color-crimson); margin-bottom: 0.25rem;">${cert.title}</h3>
+          <div style="font-size: 0.85rem; color: var(--color-text-muted);">${cert.issuer}</div>
+        </div>
+        ${previewHtml}
+      `;
+
+      document.getElementById('certModalContent').innerHTML = content;
+      document.getElementById('drawerOverlay').classList.add('active');
+      document.getElementById('certModal').classList.add('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeAllModals() {
+      document.getElementById('drawerOverlay').classList.remove('active');
+      document.getElementById('certModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  </script>
+</body>
+</html>
